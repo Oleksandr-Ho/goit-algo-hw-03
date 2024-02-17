@@ -21,7 +21,4 @@ def is_palindrome(s):
             return False
     return True
 
-# Приклади використання
-test_strings = ["A man a plan a canal Panama", "No lemon, no melon", "Hello, World!"]
-for test_str in test_strings:
-    print(f"\"{test_str}\" is a palindrome: {is_palindrome(test_str)}")
+

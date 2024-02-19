@@ -16,7 +16,7 @@ def generate_request():
     Створює нову заявку з унікальним ідентифікатором і додає її до черги.
     """
     request_id = random.randint(1000, 9999)  # Генеруємо унікальний ID заявки
-    print(f"Генеруємо нову заявку: {request_id}")
+    print(f"Генеруємо нову заявку: {request_id}. Для зупунки натисніть Control+C")
     requests_queue.put(request_id)
 
 def process_request():
@@ -30,11 +30,14 @@ def process_request():
         print("Черга пуста. Немає заявок для обробки.")
 
 # Головний цикл програми
-def main_loop(iterations=5):
-    for _ in range(iterations):
-        generate_request()  # Генеруємо нову заявку
-        time.sleep(1)  # Затримка для імітації часу надходження заявки
-        process_request()  # Обробляємо заявку
+def main_loop():
+    try:
+        while True:
+            generate_request()  # Генеруємо нову заявку
+            time.sleep(1)  # Затримка для імітації часу надходження заявки
+            process_request()  # Обробляємо заявку
+    except KeyboardInterrupt:
+        print("\nПрограма була перервана користувачем.")
 
 # Викликаємо головний цикл програми
 main_loop()
